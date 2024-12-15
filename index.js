@@ -9,6 +9,9 @@ const srchbtn = document.getElementById("srch-btn");
 async function getCatData() {
   try {
     const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Couldn't fetch API");
+    }
     const data = await response.json();
     const catUrl = data[0].url;
     catImage.innerHTML = `<img src="${catUrl}" alt="Random Cat" width="300" />`;
